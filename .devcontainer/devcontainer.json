@@ -1,0 +1,26 @@
+{
+	"name": "Existing Dockerfile",
+	"context": "..",
+	"dockerFile": "../Dockerfile",
+	"postStartCommand": "sudo pip3 install -e src/ && sudo pip3 install -e test/",
+	"build": {
+		"target": "dev_stage",
+		"args": {
+			"USERNAME": "${localEnv:USER}"
+		}
+	},
+	"settings": { 
+		"terminal.integrated.shell.linux": null,
+		"python.autoComplete.addBrackets": true,
+		"python.testing.pytestEnabled": true,
+		"python.pythonPath": "python"
+	},
+	"mounts": [
+		"source=${localEnv:HOME},target=${localEnv:HOME},type=bind",
+		"source=${localWorkspaceFolderBasename},target=/opt/app-root/src/.vscode-server/extensions/,type=volume"
+	],
+	"extensions": [
+		"ms-python.python",
+		"visualstudioexptteam.vscodeintellicode"
+	]
+}
